@@ -1,5 +1,5 @@
 import sys
-sys.stdin = open('input.txt')
+sys.stdin = open('../input.txt')
 input = sys.stdin.readline
 n, m = map(int, input().split())
 nums = [i for i in list(map(int, input().split()))]
