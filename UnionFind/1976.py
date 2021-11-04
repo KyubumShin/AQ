@@ -1,5 +1,4 @@
 import sys
-sys.setrecursionlimit(10**6)
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
@@ -36,8 +35,11 @@ for i in range(1, n+1):
             weight_union(i, j)
 
 trip_route = list(map(int, input().split()))
-result = set([parent[i] for i in trip_route])
-if len(result) != 1:
-    print("NO")
+result = weight_find(trip_route[0])
+for i in trip_route:
+    if weight_find(i) != result:
+        print("NO")
+        break
 else:
     print("YES")
+print(parent)
