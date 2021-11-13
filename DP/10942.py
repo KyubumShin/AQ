@@ -2,7 +2,6 @@ import sys
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
-
 def dp():
     nums_dp = [[0 for _ in range(n)] for _ in range(n)]
     for i in range(0, n):
