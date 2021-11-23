@@ -16,7 +16,7 @@ for i in range(1, n):
         end = start + i
         if start + 1 == end:
             dp[start][end] = row[start] * col[start] * col[end]
-        else: # 4 abcd -> a(bcd) (ab)(cd) (abc)d
+        else:
             dp[start][end] = 1 << 31
             for k in range(start, end):
                 dp[start][end] = min(dp[start][end], dp[start][k] + dp[k+1][end] + row[start] * col[k] * col[end])
