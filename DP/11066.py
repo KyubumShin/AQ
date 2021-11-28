@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
