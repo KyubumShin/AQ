@@ -9,6 +9,7 @@ for _ in range(e):
     s, e, c = map(int, input().split())
     if route[s-1][e-1] > c:
         route[s-1][e-1] = c
+
 # 플로이드 와샬
 for k in range(v):
     for i in range(v):
