@@ -27,6 +27,7 @@ def min_tree(start, end, node, left, right):
 
 
 init_tree(0, n-1, 1)
+print(seg_tree)
 for _ in range(m):
     a, b = map(int, input().split())
     print(min_tree(0, n-1, 1, a-1, b-1))
