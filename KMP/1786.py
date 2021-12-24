@@ -25,7 +25,6 @@ def getpi(p):
 def kmp(p, s) -> bool:
     answer = []
     pi = getpi(p)
-    print(pi)
     n = len(s)
     m = len(p)
     j = 0
@@ -41,10 +40,13 @@ def kmp(p, s) -> bool:
     return answer
 
 def main():
-    t = input().strip()
-    p = input().strip()
+    t = input()
+    p = input()
+    print(p)
     ans = kmp(p, t)
-    print(1 if ans else 0)
+    ans = list(map(lambda x: x+1, ans))
+    print(len(ans))
+    print(*ans)
 
 
 if __name__ == "__main__":
