@@ -14,20 +14,19 @@ for _ in range(n):
     for i in cm:
         if i == "R":
             reverse = 1 - reverse
-        else:
-            if leng == 0:
+        elif i == "D":
+            if not num:
                 valid = False
                 break
-            elif reverse == 1:
-                num.pop()
-                leng -= 1
-            elif reverse == 0:
-                num.popleft()
-                leng -= 1
+            else:
+                if reverse == 1:
+                    num.pop()
+                elif reverse == 0:
+                    num.popleft()
 
     if valid:
         if reverse == 1:
             num.reverse()
-        print(list(num))
+        print("[" + ",".join(list(map(str, num))) + "]")
     else:
         print('error')
