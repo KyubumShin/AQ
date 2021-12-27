@@ -1,4 +1,5 @@
 import sys
+import re
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
@@ -25,7 +26,6 @@ def getpi(p):
 def kmp(p, s) -> bool:
     answer = []
     pi = getpi(p)
-    print(pi)
     n = len(s)
     m = len(p)
     j = 0
@@ -40,11 +40,15 @@ def kmp(p, s) -> bool:
                 j += 1
     return answer
 
+
 def main():
     t = input()
-    p = input().strip()
-    ans = kmp(p, t)
-    print(1 if ans else 0)
+    p = input()
+    new_t = re.sub('[0-9]', '', t)
+    print(new_t)
+    ans = kmp(p, new_t)
+    ans = list(map(lambda x: x+1, ans))
+    print(len(ans))
 
 
 if __name__ == "__main__":
