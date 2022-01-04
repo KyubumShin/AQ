@@ -1,14 +1,12 @@
 import sys
-import math
 import heapq
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
-
-T = int(input())
+INF = int(1e9)
 
 
 def dijkstra(start):
-    distance = [math.inf] * (n + 1)
+    distance = [INF] * (n + 1)
     distance[start] = 0
     queue = []
     heapq.heappush(queue, (0, start))
@@ -24,23 +22,28 @@ def dijkstra(start):
     return distance
 
 
+T = int(input())
 for _ in range(T):
-    n, m, t = map(int, input().split())
+    n, m, k = map(int, input().split())
     s, g, h = map(int, input().split())
     dist = [[] for i in range(n+1)]
     for _ in range(m):
         x, y, d = map(int, input().split())
-        dist[x].append([y, d])
-        dist[y].append([x, d])
-    dest = [int(input()) for _ in range(t)]
+        dist[x].append((y, d))
+        dist[y].append((x, d))
+
+    dest = []
+    for _ in range(k):
+        dest.append(int(input()))
+    first = dijkstra(s)
+    g_dijk = dijkstra(g)
+    h_dijk = dijkstra(h)
     answer = []
-    length_s = dijkstra(s)
-    length_g = dijkstra(g)
-    length_h = dijkstra(h)
-    for i in dest:
-        if length_s[g] + length_g[h] + length_h[i] == length_s[i] or length_s[h] + length_g[i] + length_h[g] == length_s[i]:
-            answer.append(i)
-    for f in sorted(answer):
+    for b in dest:
+        if first[g] + g_dijk[h] + h_dijk[b] == first[b] or first[h] + h_dijk[g] + g_dijk[b] == first[b]:
+            answer.append(b)
+    answer.sort()
+    for f in answer:
         print(f, end=' ')
     print()
 
