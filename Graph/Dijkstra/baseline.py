@@ -1,5 +1,5 @@
 import heapq
-
+# math.inf 사용하지 말것 가끔 에러나는것 같음
 def dijkstra(start):
     queue = []
     heapq.heappush(queue, [0, 0])
@@ -11,4 +11,4 @@ def dijkstra(start):
             next_dis = l + dis
             if next_dis < distance[next_pos]:
                 distance[next_pos] = next_dis
-                queue.append((next_dis, next_pos))
+                heapq.heappush(queue, (next_dis, next_pos))
