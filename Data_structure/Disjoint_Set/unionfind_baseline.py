@@ -5,7 +5,7 @@ rank = {}
 def find_base(node):
     if parent[node] == node:
         return node
-    return find(parent[node])
+    return find_base(parent[node])
 
 
 def union(v, u):
@@ -45,7 +45,7 @@ def weight_find(node: int):
     return parent[node]
 
 
-def weight_union(v, n):
+def weight_union(v, u):
     v_p = weight_find(v)
     u_p = weight_find(u)
     if parent[v_p] < parent[u_p]:  # 부모노드의 값이 음수이기 때문에 더 작으면 더 깊은 트리
