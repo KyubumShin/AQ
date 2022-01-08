@@ -11,7 +11,8 @@ def find_base(node):
 def union(v, u):
     v_p = find_base(v)
     u_p = find_base(u)
-    parent[v_p] = u_p
+    if v_p != u_p:
+        parent[v_p] = u_p
 
 
 # parent를 합치는 과정에서의 최적화
