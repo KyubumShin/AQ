@@ -14,15 +14,15 @@ for _ in range(m):
     prev_q[s] += 1
 
 for i in range(1, n+1):
-    if prev_q == 0:
+    if prev_q[i] == 0:
         heapq.heappush(heap, i)
 
 while heap:
     cur = heapq.heappop(heap)
     answer.append(cur)
     for i in route[cur]:
-        prev_q -= 1
-        if prev_q == 0:
-            heapq.heappush(i)
+        prev_q[i] -= 1
+        if prev_q[i] == 0:
+            heapq.heappush(heap, i)
 
 print(' '.join(map(str, answer)))
