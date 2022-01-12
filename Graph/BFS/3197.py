@@ -48,7 +48,7 @@ def melting_ice(ice_q: deque, first: bool):
 
 
 def main():
-    global time, swan_other
+    global time
     swan = deque()
     ice = deque()
     for i in range(r):
@@ -56,12 +56,9 @@ def main():
         for j in range(len(lst)):
             if lst[j] == 'X':
                 ice.append([i, j])
-            elif lst[j] == 2:
-                if not swan:
-                    swan.append([i, j])
-                else:
-                    swan_other = [i, j]
-                lst[j] = 1
+            elif lst[j] == 'L':
+                swan.append([i, j])
+            lst[j] = '.'
         table.append(lst)
     first = True
     while isinstance(swan, deque) and time < 5:
