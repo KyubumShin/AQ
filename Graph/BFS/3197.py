@@ -18,53 +18,44 @@ def swan_bfs(swan_q: deque):
                 elif visit[ny][nx] == 1:
                     continue
                 elif table[ny][nx] == '.':
-                    visit[ny][nx] = 1
                     swan_q.append([ny, nx])
-                elif table[ny][nx] == 0:
-                    ret_q.append(cur)
+                elif table[ny][nx] == 'X':
+                    ret_q.append([ny, nx])
+                visit[ny][nx] = 1
     return ret_q
 
 
-def melting_ice(ice_q: deque, first: bool):
+def melting_ice(water_q: deque):
     ret_q = deque()
-    while ice_q:
-        cur = ice_q.popleft()
+    while water_q:
+        cur = water_q.popleft()
         for i in range(4):
             nx = cur[1] + dx[i]
             ny = cur[0] + dy[i]
             if 0 <= nx < c and 0 <= ny < r:
-                if first:
-                    if table[ny][nx] == 1:
-                        ret_q.append(cur)
-                        break
-                else:
-                    if [ny, nx] in ret_q:
-                        continue
-                    if table[ny][nx] == 'X':
-                        ret_q.append([ny, nx])
-    for y, x in ret_q:
-        table[y][x] = 1
+                if table[ny][nx] == 'X':
+                    ret_q.append([ny, nx])
+                    table[ny][nx] = '.'
     return ret_q
 
 
 def main():
-    global time
+    global time, swan_other
     swan = deque()
-    ice = deque()
+    water = deque()
     for i in range(r):
         lst = list(input().strip())
         for j in range(len(lst)):
-            if lst[j] == 'X':
-                ice.append([i, j])
-            elif lst[j] == 'L':
+            if lst[j] == 'L':
                 swan.append([i, j])
-            lst[j] = '.'
+                lst[j] = '.'
+            elif lst[j] == 'L':
+                water.append([i, j])
         table.append(lst)
-    first = True
+    swan_other = swan.pop()
     while isinstance(swan, deque) and time < 5:
         swan = swan_bfs(swan)
-        ice = melting_ice(ice, first)
-        first = False
+        water = melting_ice(water)
         time += 1
     else:
         print(swan)
@@ -72,7 +63,6 @@ def main():
 
 if __name__ == "__main__":
     r, c = map(int, input().split())
-    obj = {'.': 1, 'L': 2, 'X': 0}
     dx = [1, -1, 0, 0]
     dy = [0, 0, 1, -1]
     table = []
