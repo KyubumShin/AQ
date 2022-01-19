@@ -1,25 +1,21 @@
-import sys
-sys.stdin = open('input.txt')
-input = sys.stdin.readline
-
-n = int(input())
+T = int(input())
 howl_dic = {'c': 0, 'r': 1, 'o': 2, 'a': 3, 'k': 4}
-for i in range(1, 1+n):
-    howl = input().strip()
-    howl_part = [0] * 5
+
+for test_case in range(1, T + 1):
+    howl = input()
+    howl_part = {'c': 0, 'r': 0, 'o': 0, 'a': 0, 'k': 0}
     answer = 0
     before = -1
     for c in howl:
-        howl_part[howl_dic[c]] += 1
-        if howl_dic[c] > 0 and howl_part[howl_dic[c]] > howl_part[howl_dic[c]-1]:
+        howl_part[c] += 1
+        if not howl_part['c'] >= howl_part['r'] >= howl_part['o']>= howl_part['a'] >= howl_part['k']:
             answer = -1
             break
-        if howl_dic[c] == 4:
-            answer += 1
-        if howl_dic[c] == 0 and answer != 0:
-            for j in range(5):
+        if c == 'c' and 0 not in howl_part.values():
+            for j in howl_part.keys():
                 howl_part[j] -= 1
-            answer -= 1
-    if sum(howl_part)/5 != howl_part[0]:
+    if not howl_part['c'] == howl_part['r'] == howl_part['o'] == howl_part['a'] == howl_part['k']:
         answer = -1
-    print(i, answer)
+    else:
+        answer = howl_part['c']
+    print('#{} {}'.format(test_case, answer))
