@@ -13,6 +13,7 @@ for _ in range(m):
         route[a][b] = c
 dist = [INF] * (n+1)
 
+
 def bellman_ford(start):
     dist[start] = 0
     for i in range(n):
