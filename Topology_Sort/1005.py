@@ -4,7 +4,7 @@ sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
 
-def Topology_Sort(time, tree, inDegree, end):
+def topology_sort(time, tree, inDegree, end):
     ret = [0] * len(inDegree)
     queue = deque()
     for i in range(1, len(inDegree)):
@@ -32,4 +32,4 @@ for _ in range(n):
         build_tree[c].append(p)
         inDegree[p] += 1
     end = int(input())
-    print(Topology_Sort(D, build_tree, inDegree, end))
+    print(topology_sort(D, build_tree, inDegree, end))

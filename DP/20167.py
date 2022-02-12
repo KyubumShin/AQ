@@ -19,5 +19,4 @@ while left <= right <= n:
             break
         _sum += nums[right]
         right += 1
-    print(dp)
 print(dp[n])
