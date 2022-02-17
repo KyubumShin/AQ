@@ -23,9 +23,9 @@ def topology_sort(time, tree, inDegree, end):
 
 n = int(input())
 for _ in range(n):
-    n, k = map(int, input().split())
+    m, k = map(int, input().split())
     D = [0] + list(map(int, input().split()))
-    build_tree = [[] for _ in range(n+1)]
+    build_tree = [[] for _ in range(m+1)]
     inDegree = [0] * (k+1)
     for _ in range(k):
         c, p = map(int, input().split())
