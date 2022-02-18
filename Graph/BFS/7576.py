@@ -3,8 +3,8 @@ from collections import deque
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
-dx = [1, -1, 0, 0, 0, 0]
-dy = [0, 0, 1, -1, 0, 0]
+dx = [1, -1, 0, 0]
+dy = [0, 0, 1, -1]
 cnt = 0
 
 
