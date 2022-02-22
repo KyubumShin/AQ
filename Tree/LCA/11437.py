@@ -1,3 +1,4 @@
+# LCA2 도 동일한 코드로 해결 가능
 import sys
 sys.setrecursionlimit(100000)
 sys.stdin = open('input.txt')
